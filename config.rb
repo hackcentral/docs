@@ -1,3 +1,5 @@
+require './lib/redcarpet_header_fix'
+
 # Assets directories
   set :css_dir, 'stylesheets'
   set :js_dir, 'javascripts'
