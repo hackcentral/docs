@@ -25,7 +25,9 @@
         <div class="col-md-8">
           <%= yield %>
 
-          <%= partial "partials/oauth_authorize" %>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <%= partial "partials/oauth_authentication" %>
+          </div>
         </div><!-- .col-md-8 -->
 
         <div class="col-md-4">
