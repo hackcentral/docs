@@ -17,7 +17,6 @@
 
   <body class="<%= page_classes %>">
     <div class="container">
-
       <div class="row">
 
         <br>
@@ -27,32 +26,17 @@
           <%= yield %>
 
           <%= partial "partials/oauth_authorize" %>
-
         </div><!-- .col-md-8 -->
 
         <div class="col-md-4">
           <br>
 
           <div class="well">
-            <h1 class="center">HackCentral API Documentation</h1>
-            <h3>Quick Links:</h3>
-            <p><a href="/">Home</a>
-            <p><a href="">OAuth Authentication</a></p>
-            <hr>
-            <p><a href="http://hackcentral.co">HackCentral Website</a></p>
-            <p><a href="http://hackcentral.co/oauth/applications">API Dashboard</a></p>
-            <hr>
-            <p><a href="https://github.com/hackcentral/hackcentral">HackCentral Source</a></p>
-            <p><a href="https://github.com/hackcentral/docs">HackCentral API Docs Source</a></p>
+            <%= partial "partials/nav" %>
           </div>
         </div><!-- .col-md-4 -->
 
       </div><!-- .row -->
-
-
-
-
-
     </div><!-- .container -->
   </body>
 </html>
