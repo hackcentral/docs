@@ -5,12 +5,14 @@ require './lib/redcarpet_header_fix'
   set :js_dir, 'javascripts'
   set :images_dir, 'images'
 
-# Markdown
+# Markdown and syntax highlighter
   set :markdown_engine, :redcarpet
   set :markdown, :fenced_code_blocks => true, :smartypants => true, :disable_indented_code_blocks => true, :prettify => true, :tables => true, :with_toc_data => true, :no_intra_emphasis => true
-
-# Synax highlighter
   activate :syntax
+
+# More configuration!
+  activate :livereload
+  activate :directory_indexes
 
 configure :build do
   # Minify assets
