@@ -2,49 +2,108 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
-          Collapsible Group Item #1
+        <a data-toggle="collapse" data-parent="#accordion" href="#oauthAuthorize" aria-expanded="true" aria-controls="collapseOne">
+          oauth#authorize - Ask for access grant code on behalf of the user
         </a>
       </h4>
     </div>
-
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+    <div id="oauthAuthorize" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <p>
+          If users are logged into HackCentral and give your app permisison, we will send them back to [redirect_uri] together with an access_grant token as code parameter.
+          Use this access_grant in the oauth#token step.
+        </p>
+
+        <p>HTTP Request: <code>GET http://api.hackcentral.co/v1/oauth/authorize</code></p>
+
+        <p>Query Parameters:</p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>client_id</td>
+              <td>true</td>
+              <td>The id of your application</td>
+            </tr>
+
+            <tr>
+              <td>redirect_uri</td>
+              <td>true</td>
+              <td>Where shall we redirect the client afterwards to?</td>
+            </tr>
+
+            <tr>
+              <td>response_type</td>
+              <td>true</td>
+              <td>The parameter name of the request token that will be passed to your site, in case of doubt use <code>code</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="request">
+          <h3>Request:</h3>
+
+          <strong>Route:</strong>
+          <p>
+            <code>
+              GET /v1/oauth/authorize?client_id=b851c6b8b04e9befcb536ede00405e69ad3782678c1e13981035b3bac66924f7
+              &redirect_uri=http%3A%2F%2Fexample.org%2F&response_type=code
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+          <p>
+            <code>
+              Host: api.hackcentral.co
+            </code>
+          </p>
+        </div>
+
+        <div id="response">
+          <h3>Response:</h3>
+
+          <strong>Status:</strong>
+          <p>
+            <code>
+              200 OK
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+          <code>
+            X-Frame-Options: SAMEORIGIN
+            X-XSS-Protection: 1; mode=block
+            X-Content-Type-Options: nosniff
+            Content-Type: text/html; charset=utf-8
+            ETag: W/"ed8ff432635c36e9c228754a606432d0"
+            Cache-Control: max-age=0, private, must-revalidate
+            Content-Length: 2304
+          </code>
+        </div>
+
       </div>
     </div>
   </div>
-
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#oauthToken" aria-expanded="false" aria-controls="collapseTwo">
+          oauth#token - Request an access token
         </a>
       </h4>
     </div>
-
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+    <div id="oauthToken" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
       </div>
     </div>
   </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-
 </div>
