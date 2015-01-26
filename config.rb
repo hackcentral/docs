@@ -11,7 +11,6 @@ require './lib/redcarpet_header_fix'
   activate :syntax
 
 # More configuration!
-  activate :livereload
   activate :directory_indexes
 
 configure :build do
