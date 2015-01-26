@@ -1,4 +1,6 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+<!-- oauth#authorize -->
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
@@ -53,17 +55,12 @@
 
           <strong>Route:</strong>
           <p>
-            <code>
-              GET /v1/oauth/authorize?client_id=b851c6b8b04e9befcb536ede00405e69ad3782678c1e13981035b3bac66924f7
-              &redirect_uri=http%3A%2F%2Fexample.org%2F&response_type=code
-            </code>
+            <pre>GET /v1/oauth/authorize?client_id=b851c6b8b04e9befcb536ede00405e69ad3782678c1e13981035b3bac66924f7&redirect_uri=http%3A%2F%2Fexample.org%2F&response_type=code</pre>
           </p>
 
           <strong>Headers:</strong>
           <p>
-            <code>
-              Host: api.hackcentral.co
-            </code>
+            <pre>Host: api.hackcentral.co</pre>
           </p>
         </div>
 
@@ -72,26 +69,26 @@
 
           <strong>Status:</strong>
           <p>
-            <code>
-              200 OK
-            </code>
+            <pre>200 OK</pre>
           </p>
 
           <strong>Headers:</strong>
-          <code>
-            X-Frame-Options: SAMEORIGIN
-            X-XSS-Protection: 1; mode=block
-            X-Content-Type-Options: nosniff
-            Content-Type: text/html; charset=utf-8
-            ETag: W/"ed8ff432635c36e9c228754a606432d0"
-            Cache-Control: max-age=0, private, must-revalidate
-            Content-Length: 2304
-          </code>
+          <pre>
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+ETag: W/"ed8ff432635c36e9c228754a606432d0"
+Cache-Control: max-age=0, private, must-revalidate
+Content-Length: 2304
+          </pre>
         </div>
 
       </div>
     </div>
   </div>
+
+<!-- oauth#token -->
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
@@ -102,7 +99,288 @@
     </div>
     <div id="oauthToken" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+        <p>
+          Post the access_grant token (from oauth#authorize) together with several other paramers as described below.
+          Receive your access_token in the json response
+        </p>
+
+        <p>HTTP Request: <code>POST http://api.hackcentral.co/v1/oauth/token</code></p>
+
+        <p>Query Parameters:</p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>client_id</td>
+              <td>true</td>
+              <td>The id of your application</td>
+            </tr>
+
+            <tr>
+              <td>client_secret</td>
+              <td>true</td>
+              <td>The secret of your application</td>
+            </tr>
+
+            <tr>
+              <td>redirect_uri</td>
+              <td>true</td>
+              <td>Where shall we redirect the client afterwards to?</td>
+            </tr>
+
+            <tr>
+              <td>access_grant</td>
+              <td>true</td>
+              <td>Use: <code>authorization_code</code></td>
+            </tr>
+
+            <tr>
+              <td>code</td>
+              <td>true</td>
+              <td>TThe access grant code you received via the callback from the previous step</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="request">
+          <h3>Request:</h3>
+
+          <strong>Route:</strong>
+          <p>
+            <code>
+              POST /v1/oauth/token
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+            <p>
+              <pre>
+Accept: application/json
+Content-Type: application/json
+Host: api.hackcentral.co
+              </pre>
+            </p>
+
+          <strong>Body:</strong>
+            <p>
+              <pre>
+{
+  "client_id" : "b99524cda5471c828f6a9804fa785d0bd7a758d4b24dcbce608e8712ec9ab2fd",
+  "client_secret" : "c07c9a6b1d5f8c4fa48e42f91bcc87290f8fe968a5f71b10fe70df978d3b45b7",
+  "redirect_uri" : "http://example.org/",
+  "code" : "c301acd23604cbfc5f83e6b0d5d9b6ae32811e0d5dd88f5d468c0c9deb5bb557",
+  "grant_type" : "authorization_code"
+}
+              </pre>
+            </p>
+        </div>
+
+        <div id="response">
+          <h3>Response:</h3>
+
+          <strong>Status:</strong>
+          <p>
+            <pre>200 OK</pre>
+          </p>
+
+          <strong>Headers:</strong>
+          <p>
+            <pre>
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-store
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+ETag: W/"d98d2c7df71f2beddbf5ba6ba11a9ddc"
+Content-Length: 126
+            </pre>
+          </p>
+
+          <strong>Body:</strong>
+          <p>
+            <pre>
+{
+  "access_token" : "65785caa421b95eb3251c5c46557cca1b41bafc31426b4ba518587e32adf43ef",
+  "token_type" : "bearer",
+  "expires_in" : 7200
+}
+            </pre>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- users#show -->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#usersShow" aria-expanded="false" aria-controls="collapseTwo">
+          users#show - Get details of the current user
+        </a>
+      </h4>
+    </div>
+    <div id="usersShow" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+
+        <p>
+          Get information on the current user.
+        </p>
+
+        <p>HTTP Request: <code>GET http://api.hackcentral.co/v1/user</code></p>
+
+        <div id="request">
+          <h3>Request:</h3>
+
+          <strong>Route:</strong>
+          <p>
+            <code>
+              GET /v1/user
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+            <p>
+              <pre>
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer put_access_token_here
+Host: api.hackcentral.co
+              </pre>
+            </p>
+        </div>
+
+        <div id="response">
+          <h3>Response:</h3>
+
+          <strong>Status:</strong>
+          <p>
+            <pre>200 OK</pre>
+          </p>
+
+          <strong>Headers:</strong>
+          <p>
+            <pre>
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-store
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+ETag: W/"d98d2c7df71f2beddbf5ba6ba11a9ddc"
+Content-Length: 126
+            </pre>
+          </p>
+
+          <strong>Body:</strong>
+          <p>
+            <pre>
+{
+  id: 1
+  name: "Jon Moss"
+  username: "maclover7"
+  email: "me@jonathanmoss.me"
+  created_at: "2015-01-01T18:44:54.413Z"
+  updated_at: "2015-01-22T19:47:43.107Z"
+  admin: false
+  mlh: false
+  bio: ""
+}
+            </pre>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- applications#index -->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#applicationsIndex" aria-expanded="false" aria-controls="collapseTwo">
+          applications#index - Request an access token
+        </a>
+      </h4>
+    </div>
+    <div id="applicationsIndex" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+
+        <p>
+          Post the access_grant token (from oauth#authorize) together with several other paramers as described below.
+          Receive your access_token in the json response
+        </p>
+
+        <p>HTTP Request: <code>GET http://api.hackcentral.co/v1/applications</code></p>
+
+        <div id="request">
+          <h3>Request:</h3>
+
+          <strong>Route:</strong>
+          <p>
+            <code>
+              GET /v1/applications
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+            <p>
+              <pre>
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer put_access_token_here
+Host: api.producthunt.com
+              </pre>
+            </p>
+        </div>
+
+        <div id="response">
+          <h3>Response:</h3>
+
+          <strong>Status:</strong>
+          <p>
+            <pre>200 OK</pre>
+          </p>
+
+          <strong>Headers:</strong>
+          <p>
+            <pre>
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-store
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+ETag: W/"d98d2c7df71f2beddbf5ba6ba11a9ddc"
+Content-Length: 126
+            </pre>
+          </p>
+
+          <strong>Body:</strong>
+          <p>
+            <pre>
+{
+  id: 1
+  reimbursement_needed: true
+  created_at: "2015-01-01T18:46:35.134Z"
+  updated_at: "2015-01-01T18:47:22.674Z"
+  user_id: 1
+  profile_id: 1
+  hackathon_id: 1
+  accepted: true
+  checked_in: true
+}
+            </pre>
+          </p>
+        </div>
       </div>
     </div>
   </div>
