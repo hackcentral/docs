@@ -56,8 +56,140 @@ X-Content-Type-Options: nosniff
 Cache-Control: no-store
 Pragma: no-cache
 Content-Type: application/json; charset=utf-8
-ETag: W/"d98d2c7df71f2beddbf5ba6ba11a9ddc"
-Content-Length: 126
+            </pre>
+          </p>
+
+          <strong>Body:</strong>
+          <p>
+            <pre>
+[
+  {
+    id: 1
+    reimbursement_needed: true
+    created_at: "2015-01-01T18:46:35.134Z"
+    updated_at: "2015-01-01T18:47:22.674Z"
+    user_id: 1
+    profile_id: 1
+    hackathon_id: 1
+    accepted: true
+    checked_in: true
+  },
+  {
+    id: 1690
+    reimbursement_needed: true
+    created_at: "2015-01-01T18:46:35.134Z"
+    updated_at: "2015-01-01T18:47:22.674Z"
+    user_id: 1
+    profile_id: 3
+    hackathon_id: 89
+    accepted: true
+    checked_in: true
+  },
+]
+            </pre>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- applications#create -->
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#applicationsCreate" aria-expanded="false" aria-controls="collapseTwo">
+          applications#create - Create an application
+        </a>
+      </h4>
+    </div>
+    <div id="applicationsCreate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+
+        <p>
+          Post the access_grant token (from oauth#authorize) together with several other paramers as described below.
+          Receive your access_token in the json response
+        </p>
+
+        <p>HTTP Request: <code>POST http://api.hackcentral.co/v1/applications</code></p>
+
+        <p>Query Parameters:</p>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>reimbursement_needed</td>
+              <td>false</td>
+              <td>If you will need reimbursement for travel to the hackathon</td>
+            </tr>
+
+            <tr>
+              <td>profile_id</td>
+              <td>true</td>
+              <td>The id of the profile that will be providing user details to the hackathon</td>
+            </tr>
+
+            <tr>
+              <td>hackathon_id</td>
+              <td>true</td>
+              <td>The id of the hackathon the user is applying to</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="request">
+          <h3>Request:</h3>
+
+          <strong>Route:</strong>
+          <p>
+            <code>
+              POST /v1/applications
+            </code>
+          </p>
+
+          <strong>Headers:</strong>
+            <p>
+              <pre>
+Accept: application/json
+Content-Type: application/json
+Host: api.hackcentral.co
+              </pre>
+            </p>
+
+          <strong>Body:</strong>
+            <p>
+              <pre>
+{
+  "reimbursement_needed" : "true",
+  "profile_id" : "300",
+  "hackathon_id" : "1"
+}
+              </pre>
+            </p>
+        </div>
+
+        <div id="response">
+          <h3>Response:</h3>
+
+          <strong>Status:</strong>
+          <p>
+            <pre>201 Created</pre>
+          </p>
+
+          <strong>Headers:</strong>
+          <p>
+            <pre>
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-store
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
             </pre>
           </p>
 
@@ -65,15 +197,15 @@ Content-Length: 126
           <p>
             <pre>
 {
-  id: 1
+  id: 22
   reimbursement_needed: true
-  created_at: "2015-01-01T18:46:35.134Z"
-  updated_at: "2015-01-01T18:47:22.674Z"
+  created_at: "2015-01-20T22:51:29.929Z"
+  updated_at: "2015-01-20T22:51:30.000Z"
   user_id: 1
   profile_id: 1
   hackathon_id: 1
-  accepted: true
-  checked_in: true
+  accepted: false
+  checked_in: false
 }
             </pre>
           </p>
